@@ -1,0 +1,7 @@
+.idea
+.idea_modules
+.settings
+bin
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
