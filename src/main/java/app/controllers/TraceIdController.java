@@ -4,6 +4,8 @@ import app.dtos.TraceIdDto;
 import brave.Span;
 import brave.Tracer;
 import brave.propagation.TraceContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +16,7 @@ import java.util.Optional;
 
 @RestController
 public class TraceIdController {
+    private Logger logger = LoggerFactory.getLogger(TraceIdController.class);
     private Tracer tracer;
 
     @Autowired
@@ -30,6 +33,7 @@ public class TraceIdController {
     }
 
     private Optional<String> getTraceId() {
+        logger.info("Traceid retrieval");
         return Optional.of(tracer)
                 .map(Tracer::currentSpan)
                 .map(Span::context)
